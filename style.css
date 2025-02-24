@@ -1,0 +1,138 @@
+/* ========== RESET & GRUNDSTILE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center; /* Alle Texte zentrieren */
+}
+html, body {
+  background-color: #0D1B2A;
+  color: #FFFFFF;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;  entfernen */
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* ========== SPRACHAUSWAHL (FLAGGEN) ========== */
+.language-switch {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+.language-switch img {
+  width: 35px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* ========== HEADER ========== */
+
+header,
+.info-section,
+footer {
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 2rem;
+}
+header h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #E0E1DD;
+  margin-bottom: 0.5rem;
+}
+header p {
+  font-size: 1.2rem;
+  color: #A9BCD0;
+}
+
+/* ========== 3D-MODELL SECTION ========== */
+.model-section {
+  width: 100%;
+  max-width: 1200px; /* Optional */
+  margin: 0 auto 2rem auto;
+}
+.model-section model-viewer {
+  width: 100%;
+  height: 700px; /* doppelte Größe */
+  background-color: transparent;
+}
+
+/* ========== INFO SECTION (MITTELPUNKT) ========== */
+.info-section {
+  width: 100%;          /* Container füllt den gesamten verfügbaren Platz */
+  max-width: 800px;     /* Begrenzung der maximalen Breite */
+  margin: 0 auto 3rem;  /* Automatische horizontale Margen für zentrierte Ausrichtung */
+  text-align: center;
+  align-self: stretch;  /* Erzwingt im Flex-Container, dass das Element die volle Breite einnimmt */
+}
+.info-section p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #A9BCD0;
+  margin: 0 auto; /* Mittig */
+}
+
+/* ========== FOOTER (MITTELPUNKT) ========== */
+footer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto; /* Automatisch zentrieren */
+  text-align: center;
+  font-size: 0.9rem;
+  color: #AAAAAA;
+  padding: 2rem 0;
+}
+footer p {
+  margin-bottom: 1rem;
+}
+footer a {
+  color: #FF9F1C;
+  text-decoration: none;
+  font-weight: 600;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ========== COOKIE CONSENT MODAL ========== */
+.cookie-consent-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.cookie-consent-content {
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  text-align: center;
+}
+.cookie-consent-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

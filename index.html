@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #0D1B2A; margin: 0; padding: 0;">
+<head>
+  <meta charset="UTF-8">
+  <title>Kartesischer Roboter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Model-Viewer (für 3D-Modelle) -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Übersetzungen -->
+  <script src="translations.js"></script>
+
+  <!-- Passwort-Blocking-Loop -->
+  <script>
+    // Solange wiederholen, bis "Fusion" getippt wird
+    let pass;
+    do {
+      pass = prompt("Bitte Passwort eingeben:");
+    } while (pass !== "Fusion");
+    // Sobald "Fusion" eingegeben, geht es weiter:
+    // (Der Body wird später sichtbar gemacht)
+  </script>
+</head>
+<body id="allContent" style="display: none;">
+  <!-- Cookie Consent Modal -->
+  <div id="cookieConsentModal" class="cookie-consent-modal" style="display:none;">
+    <div class="cookie-consent-content">
+      <p data-i18n="cookieConsentText">Diese Webseite verwendet Cookies...</p>
+      <button id="declineCookies" data-i18n="cookieDecline">Ablehnen</button>
+      <button id="acceptCookies" data-i18n="cookieAccept">Akzeptieren</button>
+    </div>
+  </div>
+
+  <!-- Flaggen für Sprachauswahl -->
+  <div class="language-switch">
+    <img src="flag-de.png" alt="Deutsch" title="Deutsch" onclick="setLanguage('de')">
+    <img src="flag-en.png" alt="English" title="English" onclick="setLanguage('en')">
+    <img src="flag-sv.png" alt="Svenska" title="Svenska" onclick="setLanguage('sv')">
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1 data-i18n="headerTitle">Kartesischer Roboter</h1>
+    <p data-i18n="headerSubtitle">Ein Projekt zur Förderung von 3D-Druck und Programmierung</p>
+  </header>
+
+  <!-- 3D-Modell (extra groß) -->
+  <section class="model-section">
+    <model-viewer
+      src="kartesischerRoboter.glb"
+      ios-src="kartesischerRoboter.usdz"
+      alt="3D-Modell: Kartesischer Roboter"
+      ar
+      ar-modes="scene-viewer quick-look webxr"
+      camera-controls
+      auto-rotate
+      exposure="0.5">
+    </model-viewer>
+  </section>
+
+  <!-- Infotext -->
+  <section class="info-section">
+    <p data-i18n="robotDescription">
+      Hier präsentieren wir Ihnen den neuen Roboter, der in Zusammenarbeit mit einer
+      deutschen und einer schwedischen Schule entstanden ist. In diesem Projekt geht
+      es darum, 3D-Druck und Programmierung voranzubringen.
+    </p>
+  </section>
+
+  <!-- Footer: Impressum + Haftungsausschluss -->
+  <footer>
+    <!-- Impressum -->
+    <p style="margin-bottom: 1rem;">
+      <strong>Impressum:</strong> (Schulprojekt) Förderverein BBS Brinkstraße, Brinkstraße 17 • 49080 Osnabrück • 
+      <a href="mailto:team@mintfactory.eu" style="color:#FF9F1C;">team@mintfactory.eu</a>
+    </p>
+    <!-- Haftungsausschluss -->
+    <p style="margin-bottom: 1rem; max-width: 800px; text-align: center;">
+      <strong>Haftungsausschluss:</strong> Die Inhalte dieser Webseite wurden mit größter Sorgfalt erstellt. 
+      Dennoch übernehmen wir keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen. 
+      Wir übernehmen keine Verantwortung für externe Links. Für deren Inhalte sind ausschließlich die jeweiligen Betreiber verantwortlich. 
+      Sollten uns Rechtsverletzungen bekannt werden, entfernen wir die entsprechenden Inhalte oder Links umgehend.
+    </p>
+    <!-- Link zur Datenschutz-Seite -->
+    <p>
+      <a href="https://mint-factory.github.io/PrivacyPolicy/" target="_blank" style="color:#FF9F1C;">Datenschutzerklärung</a>
+    </p>
+  </footer>
+
+  <!-- Script: Sichtbar machen & Cookie Consent -->
+  <script>
+    // Nachdem Passwort ok ist, Body anzeigen
+    document.getElementById("allContent").style.display = "block";
+
+    // Cookie-Logik wie in fertigeWebseite.html
+    function loadExternalStuff() {
+      // Hier könntest du externe IFrames (z.B. YouTube) laden,
+      // falls du Videos einbinden möchtest.
+    }
+    function showPlaceholders() {
+      // Falls abgelehnt - ggf. Platzhalter anzeigen
+    }
+
+    // Beim Laden der Seite
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sprache standardmäßig auf 'de'
+      setLanguage('de');
+
+      // Cookie-Abfrage
+      const cookiesAccepted = localStorage.getItem("cookiesAccepted");
+      if (cookiesAccepted === "true") {
+        loadExternalStuff();
+      } else if (cookiesAccepted === "false") {
+        showPlaceholders();
+      } else {
+        // Noch keine Entscheidung => Modal anzeigen
+        document.getElementById("cookieConsentModal").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      // Klick auf "Akzeptieren"
+      document.getElementById("acceptCookies").addEventListener("click", function(){
+        localStorage.setItem("cookiesAccepted", "true");
+        document.getElementById("cookieConsentModal").style.display = "none";
+        document.body.style.overflow = "";
+        loadExternalStuff();
+      });
+
+      // Klick auf "Ablehnen"
+      document.getElementById("declineCookies").addEventListener("click", function(){
+        localStorage.setItem("cookiesAccepted", "false");
+        document.getElementById("cookieConsentModal").style.display = "none";
+        document.body.style.overflow = "";
+        showPlaceholders();
+      });
+    });
+  </script>
+</body>
+</html>
